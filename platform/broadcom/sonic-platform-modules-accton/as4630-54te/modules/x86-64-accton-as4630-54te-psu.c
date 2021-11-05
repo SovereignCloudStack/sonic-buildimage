@@ -308,7 +308,7 @@ static struct as4630_54te_psu_data *as4630_54te_psu_update_device(struct device 
                 printk("unable to read model name from (0x%x) offset(0x2e)\n", client->addr);
             }
             
-            data->serial_number[MAX_SERIAL_NUMBER]='\0';
+            data->serial_number[MAX_SERIAL_NUMBER-1]='\0';
            
         }
 
