@@ -259,6 +259,7 @@ static struct as4630_54te_psu_data *as4630_54te_psu_update_device(struct device 
     if (time_after(jiffies, data->last_updated + HZ + HZ / 2)
             || !data->valid) {
         int status;
+        u8 serial_offset;
         int power_good = 0;
 
         dev_dbg(&client->dev, "Starting as4630_54te update\n");
@@ -288,24 +289,33 @@ static struct as4630_54te_psu_data *as4630_54te_psu_update_device(struct device 
             if (status < 0) {
                 data->model_name[0] = '\0';
                 dev_dbg(&client->dev, "unable to read model name from (0x%x)\n", client->addr);
-                printk("unable to read model name from (0x%x)\n", client->addr);
             }
-            else if(!strncmp(data->model_name, "YM-1151D", strlen("YM-1151D")))
-            {
-                data->model_name[strlen("YM-1151D")]='\0';
-                
-            }
-            else
-            {
+            else {
+                data->model_name[8] = '-';
                 data->model_name[ARRAY_SIZE(data->model_name)-1] = '\0';
             }
-             /* Read from offset 0x2e ~ 0x3f (16 bytes) */
-            status = as4630_54te_psu_read_block(client, 0x2e,data->serial_number, MAX_SERIAL_NUMBER);
+            if(!strncmp(data->model_name, "YM-1151D", strlen("YM-1151D")))
+            {
+                if (!strncmp(data->model_name, "YM-1151D-A03R", strlen("YM-1151D-A03R")))
+                {
+                    data->model_name[strlen("YM-1151D-A03R")] = '\0';
+                    serial_offset = 0x2E; /* YM-1151D-A03R, F2B dir */
+                }
+                else
+                {
+                    data->model_name[strlen("YM-1151D-A02R")] = '\0';
+                    serial_offset = 0x35; /* YM-1151D-A02R, B2F dir */
+                }
+            }
+            else
+                serial_offset = 0x2E;
+            
+            /* Read from offset 0x2e ~ 0x3f (16 bytes) */
+            status = as4630_54te_psu_read_block(client, serial_offset, data->serial_number, MAX_SERIAL_NUMBER);
             if (status < 0)
             {
                 data->serial_number[0] = '\0';
                 dev_dbg(&client->dev, "unable to read model name from (0x%x) offset(0x2e)\n", client->addr);
-                printk("unable to read model name from (0x%x) offset(0x2e)\n", client->addr);
             }
             
             data->serial_number[MAX_SERIAL_NUMBER-1]='\0';
