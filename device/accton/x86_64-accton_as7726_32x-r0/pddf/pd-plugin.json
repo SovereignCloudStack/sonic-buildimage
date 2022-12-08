@@ -61,7 +61,7 @@
 		
         "duty_cycle_to_pwm": "lambda dc: ((dc*100)/625 -1)",
 
-        "pwm_to_duty_cycle": "lambda pwm: (((pwm+1)*625+75)/100)"
+        "pwm_to_duty_cycle": "lambda pwm: (((pwm+1)*625)/100)"
     }
 
 }
