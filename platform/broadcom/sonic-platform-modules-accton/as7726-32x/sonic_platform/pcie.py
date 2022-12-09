@@ -6,11 +6,7 @@
 # Base PCIe class
 #############################################################################
 
-import logging
-
-
 try:
-    from sonic_platform.component import Component
     from sonic_platform_base.sonic_pcie.pcie_common import PcieUtil
 except ImportError as e:
     raise ImportError(str(e) + "- required module not found")
