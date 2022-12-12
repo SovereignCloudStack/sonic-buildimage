@@ -5,7 +5,7 @@
 		"num_fantrays":6,
 		"num_fans_pertray":2,
 		"num_ports":34,
-		"num_temps":7,
+		"num_temps":6,
 		"pddf_dev_types":
 		{
 			"description":"AS7726 - Below is the list of supported PDDF device types (chip names) for various components. If any component uses some other driver, we will create the client using 'echo <dev-address> <dev-type> > <path>/new_device' method",
@@ -1868,23 +1868,10 @@
     "TEMP6" :
     {
         "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP6"},
-        "dev_attr": { "display_name":"pch_haswell-virtual-0"},
-        "i2c":
-        {
-            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
-            "attr_list":
-            [
-                { "attr_name": "temp1_input"}
-            ]
-        }
-    },
-    "TEMP7" :
-    {
-        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP7"},
         "dev_attr": { "display_name":"coretemp-isa-0000"},
         "i2c":
         {
-            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon1"},
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
             "attr_list":
             [
                 { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp1_crit"},
