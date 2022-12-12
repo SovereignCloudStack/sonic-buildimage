@@ -15,3 +15,11 @@ class FanDrawer(PddfFanDrawer):
         PddfFanDrawer.__init__(self, tray_idx, pddf_data, pddf_plugin_data)
 
     # Provide the functions/variables below for which implementation is to be overwritten
+    def get_name(self):
+        """
+        Retrieves the fan drawer name
+        Returns:
+            string: The name of the device
+        """
+        return "FanTray{}".format(self.fantray_index)
+

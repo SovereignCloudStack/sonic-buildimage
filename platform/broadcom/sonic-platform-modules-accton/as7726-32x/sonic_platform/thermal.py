@@ -15,6 +15,12 @@ class Thermal(PddfThermal):
         PddfThermal.__init__(self, index, pddf_data, pddf_plugin_data, is_psu_thermal, psu_index)
 
     # Provide the functions/variables below for which implementation is to be overwritten
+    def get_name(self):
+        if self.is_psu_thermal:
+            return "PSU-{0} temp sensor 1".format(self.thermals_psu_index)
+        else:
+            return "Temp sensor {0}".format(self.thermal_index)
+    
     def get_status(self):
         get_temp=self.get_temperature()
 
