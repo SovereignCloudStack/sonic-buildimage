@@ -623,6 +623,7 @@
     "TEMP2" :
     {
         "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP2", "device_parent":"MUX4"},
+        "dev_attr":  { "display_name":"MB_FrontMiddle_temp(0x4C)"},
         "i2c":
         {
             "topo_info": { "parent_bus":"0x1b", "dev_addr":"0x4C", "dev_type":"lm75"},

@@ -33,26 +33,6 @@ class APIHelper():
             status = False
         return status, result
 
-    def run_command(self, cmd):
-        status = True
-        result = ""
-        try:
-            p = subprocess.Popen(
-                cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            raw_data, err = p.communicate()
-            if err == '':
-                result = raw_data.strip()
-        except Exception:
-            status = False
-        return status, result
-
-    def run_interactive_command(self, cmd):
-        try:
-            os.system(cmd)
-        except Exception:
-            return False
-        return True
-
     def read_txt_file(self, file_path):
         try:
             with open(file_path, 'r', errors='replace') as fd:
@@ -69,53 +49,3 @@ class APIHelper():
         except IOError:
             return False
         return True
-
-    def ipmi_raw(self, netfn, cmd):
-        status = True
-        result = ""
-        try:
-            cmd = "ipmitool raw {} {}".format(str(netfn), str(cmd))
-            p = subprocess.Popen(
-                cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            raw_data, err = p.communicate()
-            if err == '':
-                result = raw_data.strip()
-            else:
-                status = False
-        except Exception:
-            status = False
-        return status, result
-
-    def ipmi_fru_id(self, id, key=None):
-        status = True
-        result = ""
-        try:
-            cmd = "ipmitool fru print {}".format(str(
-                id)) if not key else "ipmitool fru print {0} | grep '{1}' ".format(str(id), str(key))
-
-            p = subprocess.Popen(
-                cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            raw_data, err = p.communicate()
-            if err == '':
-                result = raw_data.strip()
-            else:
-                status = False
-        except Exception:
-            status = False
-        return status, result
-
-    def ipmi_set_ss_thres(self, id, threshold_key, value):
-        status = True
-        result = ""
-        try:
-            cmd = "ipmitool sensor thresh '{}' {} {}".format(str(id), str(threshold_key), str(value))
-            p = subprocess.Popen(
-                cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            raw_data, err = p.communicate()
-            if err == '':
-                result = raw_data.strip()
-            else:
-                status = False
-        except Exception:
-            status = False
-        return status, result
