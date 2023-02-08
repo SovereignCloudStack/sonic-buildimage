@@ -223,7 +223,7 @@
                 { "attr_name":"psu_i_out", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x8c", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_p_out", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x96", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_fan1_speed_rpm", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x90", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
-                { "attr_name":"psu_temp1_input", "attr_devaddr":"0x58", "attr_devtype":"pmbus", "attr_offset":"0x8d", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"}
+                { "attr_name":"psu_temp1_input", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x8d", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"}
             ]
         }
     },
@@ -623,7 +623,7 @@
     "TEMP2" :
     {
         "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP2", "device_parent":"MUX4"},
-        "dev_attr":  { "display_name":"MB_FrontMiddle_temp(0x4C)"},
+        "dev_attr": { "display_name":"MB_FrontMiddle_temp(0x4C)"},
         "i2c":
         {
             "topo_info": { "parent_bus":"0x1b", "dev_addr":"0x4C", "dev_type":"lm75"},
