@@ -12,19 +12,20 @@ except ImportError as e:
     raise ImportError(str(e) + "- required module not found")
 
 CPLD_ADDR_MAPPING = {
-    "CPLD1": ['11', '0x60'],
-    "CPLD2": ['12', '0x62'],
-    "CPLD3": ['13', '0x64'],
-    "CPLD4": ['54', '0x66']
+    "MB CPLD1": ['11', '0x60'],
+    "MB CPLD2": ['12', '0x62'],
+    "MB CPLD3": ['13', '0x64'],
+    "FAN CPLD": ['54', '0x66'],
+    "CPU CPLD": ['0',  '0x65'],
 }
 SYSFS_PATH = "/sys/bus/i2c/devices/"
 BIOS_VERSION_PATH = "/sys/class/dmi/id/bios_version"
 COMPONENT_LIST= [
-   ("CPLD1", "CPLD 1"),
-   ("CPLD2", "CPLD 2"),
-   ("CPLD3", "CPLD 3"),
-   ("CPLD4", "CPLD 4"),
-   ("CPLD5", "CPLD 5"),
+   ("MB CPLD1", "Mainboard CPLD 1"),
+   ("MB CPLD2", "Mainboard CPLD 2"),
+   ("MB CPLD3", "Mainboard CPLD 3"),
+   ("FAN CPLD", "Fan board CPLD"),
+   ("CPU CPLD", "CPU CPLD"),
    ("BIOS", "Basic Input/Output System")
    
 ]
@@ -37,22 +38,6 @@ class Component(ComponentBase):
     def __init__(self, component_index=0):
         self.index = component_index
         self.name = self.get_name()
-
-    def __run_command(self, command):
-        # Run bash command and print output to stdout
-        try:
-            process = subprocess.Popen(
-                shlex.split(command), stdout=subprocess.PIPE)
-            while True:
-                output = process.stdout.readline()
-                if output == '' and process.poll() is not None:
-                    break
-            rc = process.poll()
-            if rc != 0:
-                return False
-        except Exception:
-            return False
-        return True
 
     def __get_bios_version(self):
         # Retrieves the BIOS firmware version
@@ -74,21 +59,6 @@ class Component(ComponentBase):
                 cpld_version[cpld_name] = "{}".format(int(cpld_version_raw,16))
 
         return cpld_version
-
-
-    def __get_cpld_cpu_version(self):
-        try:
-            cpu_version = dict()
-            cmd = "i2cget -f -y 0 0x65 0x01"
-            status, output1 = subprocess.getstatusoutput(cmd)
-            if status == 0 :
-                cpu_version = "{}".format(output1[2:])
-            else :
-                cpu_version = 'None'
-        except Exception as e:
-            cpu_version = 'None'
-
-        return cpu_version
 
     def get_name(self):
         """
@@ -116,8 +86,6 @@ class Component(ComponentBase):
 
         if self.name == "BIOS":
             fw_version = self.__get_bios_version()
-        elif "CPLD5" in self.name:
-            fw_version = self.__get_cpld_cpu_version()
         elif "CPLD" in self.name:
             cpld_version = self.__get_cpld_version()
             fw_version = cpld_version.get(self.name)

@@ -3,19 +3,19 @@
         "name": "7726-32X",
         "components": [
             {
-                "name": "CPLD1"
+                "name": "MB CPLD1"
             },
 	    {
-                "name": "CPLD2"
+                "name": "MB CPLD2"
             },
             {
-                "name": "CPLD3"
+                "name": "MB CPLD3"
             },
             {
-                "name": "CPLD4"
+                "name": "FAN CPLD"
             },
             {
-                "name": "CPLD5"
+                "name": "CPU CPLD"
             },
             {
                 "name": "BIOS"
@@ -156,26 +156,26 @@
                 ],
                 "thermals": [
                     {
-                        "name": "PSU-2 temp sensor 2"
+                        "name": "PSU-2 temp sensor 1"
                     }
                 ]
             }
         ],
         "thermals": [
             {
-                "name": "Temp sensor 1"
+                "name": "CB_temp(0x4B)"
             },
             {
-                "name": "Temp sensor 2"
+                "name": "FB_temp(0x4C)"
             },
             {
-                "name": "Temp sensor 3"
+                "name": "MB_FrontMAC_temp(0x49)"
             },
             {
-                "name": "Temp sensor 4"
+                "name": "MB_LeftCenter_temp(0x4A)"
             },
             {
-                "name": "Temp sensor 5"
+                "name": "MB_RearMAC_temp(0x48)"
             },
             {
                 "name": "CPU Temp"
