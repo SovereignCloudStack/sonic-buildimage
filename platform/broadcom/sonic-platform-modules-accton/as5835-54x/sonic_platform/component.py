@@ -23,7 +23,7 @@ BIOS_VERSION_PATH = "/sys/class/dmi/id/bios_version"
 COMPONENT_LIST= [
    ("MB_CPLD1", "Mainboard CPLD(0x60)"),
    ("MB_CPLD2", "Mainboard CPLD(0x61)"),
-   ("MB_CPLD3", "Mainboard CPLD(0x62"),
+   ("MB_CPLD3", "Mainboard CPLD(0x62)"),
    ("FAN_CPLD", "Fan board CPLD(0x63)"),
    ("CPU_CPLD", "CPU CPLD(0x65)"),
    ("BIOS", "Basic Input/Output System")
