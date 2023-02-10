@@ -3,19 +3,19 @@
         "name": "5835-54X",
         "components": [
             {
-                "name": "MB CPLD1"
+                "name": "MB_CPLD1"
             },
             {
-                "name": "MB CPLD2"
+                "name": "MB_CPLD2"
             },
             {
-                "name": "MB CPLD3"
+                "name": "MB_CPLD3"
             },
             {
-                "name": "FAN CPLD"
+                "name": "FAN_CPLD"
             },
             {
-                "name": "CPU CPLD"
+                "name": "CPU_CPLD"
             },
             {
                 "name": "BIOS"
