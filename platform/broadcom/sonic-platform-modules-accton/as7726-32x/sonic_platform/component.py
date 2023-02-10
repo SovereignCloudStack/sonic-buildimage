@@ -12,20 +12,20 @@ except ImportError as e:
     raise ImportError(str(e) + "- required module not found")
 
 CPLD_ADDR_MAPPING = {
-    "MB CPLD1": ['11', '0x60'],
-    "MB CPLD2": ['12', '0x62'],
-    "MB CPLD3": ['13', '0x64'],
-    "FAN CPLD": ['54', '0x66'],
-    "CPU CPLD": ['0',  '0x65'],
+    "MB_CPLD1": ['11', '0x60'],
+    "MB_CPLD2": ['12', '0x62'],
+    "MB_CPLD3": ['13', '0x64'],
+    "FAN_CPLD": ['54', '0x66'],
+    "CPU_CPLD": ['0',  '0x65'],
 }
 SYSFS_PATH = "/sys/bus/i2c/devices/"
 BIOS_VERSION_PATH = "/sys/class/dmi/id/bios_version"
 COMPONENT_LIST= [
-   ("MB CPLD1", "Mainboard CPLD 1"),
-   ("MB CPLD2", "Mainboard CPLD 2"),
-   ("MB CPLD3", "Mainboard CPLD 3"),
-   ("FAN CPLD", "Fan board CPLD"),
-   ("CPU CPLD", "CPU CPLD"),
+   ("MB_CPLD1", "Mainboard CPLD(0x60)"),
+   ("MB_CPLD2", "Mainboard CPLD(0x62)"),
+   ("MB_CPLD3", "Mainboard CPLD(0x64)"),
+   ("FAN_CPLD", "Fan board CPLD(0x66)"),
+   ("CPU_CPLD", "CPU CPLD(0x65)"),
    ("BIOS", "Basic Input/Output System")
    
 ]

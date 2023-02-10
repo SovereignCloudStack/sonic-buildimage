@@ -3,19 +3,19 @@
         "name": "7726-32X",
         "components": [
             {
-                "name": "MB CPLD1"
-            },
-	    {
-                "name": "MB CPLD2"
+                "name": "MB_CPLD1"
             },
             {
-                "name": "MB CPLD3"
+                "name": "MB_CPLD2"
             },
             {
-                "name": "FAN CPLD"
+                "name": "MB_CPLD3"
             },
             {
-                "name": "CPU CPLD"
+                "name": "FAN_CPLD"
+            },
+            {
+                "name": "CPU_CPLD"
             },
             {
                 "name": "BIOS"

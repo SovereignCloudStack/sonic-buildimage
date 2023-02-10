@@ -37,7 +37,9 @@ class APIHelper():
         try:
             with open(file_path, 'r', errors='replace') as fd:
                 data = fd.read()
-                return data.strip()
+                ret =  data.strip()
+                if len(ret) > 0:
+                    return ret
         except IOError:
             pass
         return None
