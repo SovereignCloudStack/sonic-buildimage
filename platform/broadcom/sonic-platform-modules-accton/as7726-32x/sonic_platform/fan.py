@@ -31,3 +31,22 @@ class Fan(PddfFan):
 
         return fan_name
 
+
+
+
+    def get_model(self):
+        """
+        Retrieves the model number (or part number) of the device
+        Returns:
+            string: Model/part number of device
+        """
+
+        return "N/A"
+
+    def get_serial(self):
+        """
+        Retrieves the serial number of the device
+        Returns:
+            string: Serial number of device
+        """
+        return "N/A"

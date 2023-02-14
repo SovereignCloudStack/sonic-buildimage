@@ -307,10 +307,10 @@ def main(argv):
     
     global platform_chassis
     platform_chassis = platform.Platform().get_chassis()
-    cmd_str = ["i2cset", "-y", "-f", "54", "0x66", "0x33", "0x0"]
-    status, output = getstatusoutput_noshell(cmd_str)
-    if status:
-        print("Warning: Fan speed watchdog could not be disabled")
+    #cmd_str = ["i2cset", "-y", "-f", "54", "0x66", "0x33", "0x0"]
+    #status, output = getstatusoutput_noshell(cmd_str)
+    #if status:
+    #    print("Warning: Fan speed watchdog could not be disabled")
 
     cmd_str = ["i2cset", "-y", "-f", "54", "0x66", "0x33", "0x1"]
     status, output = getstatusoutput_noshell(cmd_str)
