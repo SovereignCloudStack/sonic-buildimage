@@ -22,3 +22,20 @@ class FanDrawer(PddfFanDrawer):
             string: The name of the device
         """
         return "FanTray{}".format(self.fantray_index)
+
+    def get_model(self):
+        """
+        Retrieves the model number (or part number) of the device
+        Returns:
+            string: Model/part number of device
+        """
+        return self._fan_list[0].get_model()
+
+    def get_serial(self):
+        """
+        Retrieves the serial number of the device
+        Returns:
+            string: Serial number of device
+        """
+        return self._fan_list[0].get_serial()
+
