@@ -4,8 +4,8 @@
         "asic",
         "psu.voltage",
         "psu.temperature",
-        "PSU1_FAN1.speed",
-        "PSU2_FAN1.speed"
+        "PSU-1 FAN-1.speed",
+        "PSU-2 FAN-1.speed"
     ],
     "user_defined_checkers": [],
     "polling_interval": 60,
