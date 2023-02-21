@@ -5,7 +5,7 @@
         "num_fantrays":6,
         "num_fans_pertray":2,
         "num_ports":58,
-        "num_temps": 4,
+        "num_temps": 5,
         "pddf_dev_types":
         {
             "description":"AS7326-56X - Below is the list of supported PDDF device types (chip names) for various components. If any component uses some other driver, we will create the client using 'echo <dev-address> <dev-type> > <path>/new_device' method",
@@ -366,6 +366,22 @@
             ]
         }
     },
+    "TEMP5" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP5"},
+        "dev_attr": { "display_name":"coretemp-isa-0000"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp1_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp1_max"},
+                { "attr_name": "temp1_input"}
+            ]
+        }
+    },
+
     "FAN-CTRL":
     {
         "dev_info": { "device_type":"FAN", "device_name":"FAN-CTRL", "device_parent":"MUX2"},
