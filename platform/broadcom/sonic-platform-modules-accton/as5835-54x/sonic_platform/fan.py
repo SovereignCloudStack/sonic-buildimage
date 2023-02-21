@@ -50,3 +50,16 @@ class Fan(PddfFan):
             string: Serial number of device
         """
         return "N/A"
+
+    def get_target_speed(self):
+        """
+        Retrieves the target (expected) speed of the fan
+
+        Returns:
+            An integer, the percentage of full fan speed, in the range 0 (off)
+                 to 100 (full speed)
+        """
+        if self.is_psu_fan:
+            return super().get_speed()
+        else:
+            return super().get_target_speed()

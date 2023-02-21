@@ -191,7 +191,7 @@
                 "high-crit-threshold": true
             },
             {
-                "name": "CPU Temp",
+                "name": "coretemp-isa-0000",
                 "controllable": true,
                 "low-threshold": false,
                 "high-threshold": true,
