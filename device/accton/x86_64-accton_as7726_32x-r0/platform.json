@@ -178,7 +178,7 @@
                 "name": "MB_RearMAC_temp(0x48)"
             },
             {
-                "name": "CPU Temp"
+                "name": "coretemp-isa-0000"
             }
         ],
         "sfps": [
