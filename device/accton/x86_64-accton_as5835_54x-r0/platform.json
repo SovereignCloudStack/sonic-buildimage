@@ -159,7 +159,7 @@
         ],
         "thermals": [
             {
-                "name": "CpuBoard_temp(0x4B)",
+                "name": "CB_temp(0x4B)",
                 "controllable": true,
                 "low-threshold": false,
                 "high-threshold": true,

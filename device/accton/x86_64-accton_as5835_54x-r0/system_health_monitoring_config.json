@@ -10,6 +10,6 @@
     "led_color": {
         "fault": "amber",
         "normal": "green",
-        "booting": "green"
+        "booting": "off"
     }
 }

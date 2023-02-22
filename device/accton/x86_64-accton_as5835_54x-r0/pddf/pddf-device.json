@@ -614,7 +614,7 @@
     "TEMP1" :
     {
         "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP1", "device_parent":"MUX4"},
-        "dev_attr": { "display_name":"CpuBoard_temp(0x4B)"},
+        "dev_attr": { "display_name":"CB_temp(0x4B)"},
         "i2c":
         {
             "topo_info": { "parent_bus":"0x1a", "dev_addr":"0x4B", "dev_type":"lm75"},
