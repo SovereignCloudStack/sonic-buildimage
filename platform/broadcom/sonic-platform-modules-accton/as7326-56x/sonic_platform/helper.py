@@ -3,6 +3,7 @@ import struct
 import subprocess
 from mmap import *
 from sonic_py_common import device_info
+from sonic_py_common.general import getstatusoutput_noshell
 
 HOST_CHK_CMD = ["docker"]
 EMPTY_STRING = ""
