@@ -63,3 +63,16 @@ class Fan(PddfFan):
             return super().get_speed()
         else:
             return super().get_target_speed()
+
+    def get_direction(self):
+        """
+        Retrieves the direction of fan
+        Returns:
+            A string, either FAN_DIRECTION_INTAKE or FAN_DIRECTION_EXHAUST
+            depending on fan direction
+        """
+        direction = super().get_direction()
+        if direction is not None and len(direction) > 0:
+            return direction
+
+        return 'N/A'

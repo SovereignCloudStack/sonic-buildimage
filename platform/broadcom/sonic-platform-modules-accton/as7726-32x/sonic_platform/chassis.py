@@ -129,4 +129,4 @@ class Chassis(PddfChassis):
         Returns:
             string: Revision value of device
         """
-        return 'N/A'
+        return self._eeprom.revision_str()

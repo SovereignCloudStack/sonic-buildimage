@@ -11,8 +11,6 @@ except ImportError as e:
 class Psu(PddfPsu):
     """PDDF Platform-Specific PSU class"""
     
-    PLATFORM_PSU_CAPACITY = 1200
-
     def __init__(self, index, pddf_data=None, pddf_plugin_data=None):
         PddfPsu.__init__(self, index, pddf_data, pddf_plugin_data)
         
@@ -38,28 +36,30 @@ class Psu(PddfPsu):
     def get_name(self):
         return "PSU-{}".format(self.psu_index)
 
-    def get_maximum_supplied_power(self):
+    def get_temperature_high_threshold(self):
         """
-        Retrieves the maximum supplied power by PSU (or PSU capacity)
+        Retrieves the high threshold temperature of PSU
         Returns:
-            A float number, the maximum power output in Watts.
-            e.g. 1200.1
+            A float number, the high threshold temperature of PSU in Celsius
+            up to nearest thousandth of one degree Celsius, e.g. 30.125
         """
-        return float(self.PLATFORM_PSU_CAPACITY)
+        threshold = super().get_temperature_high_threshold()
 
-    def get_capacity(self):
+        for psu_thermal_idx in range(self.num_psu_thermals):
+            try:
+                tmp = self._thermal_list[psu_thermal_idx].get_high_threshold()
+                if threshold > tmp or threshold == 0.0:
+                    threshold = tmp
+            except Exception:
+                pass
+
+        return threshold
+
+    def get_revision(self):
         """
-        Gets the capacity (maximum output power) of the PSU in watts
+        Retrieves the hardware revision of the device
 
         Returns:
-            An integer, the capacity of PSU
+            string: Revision value of device
         """
-        return (self.PLATFORM_PSU_CAPACITY)
-
-    def get_type(self):
-        """
-        Gets the type of the PSU
-        Returns:
-        A string, the type of PSU (AC/DC)
-        """
-        return "AC"
+        return 'N/A'
