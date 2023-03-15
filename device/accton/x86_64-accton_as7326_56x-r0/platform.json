@@ -388,9 +388,6 @@
             }
         ]
     },
-                }
-        ]
-    },
     "interfaces": {
         "Ethernet0": {
             "index": "1",
