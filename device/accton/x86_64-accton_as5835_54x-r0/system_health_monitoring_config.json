@@ -3,7 +3,9 @@
     "devices_to_ignore": [
         "asic",
         "psu.voltage",
-        "psu.temperature"
+        "psu.temperature",
+        "PSU1_FAN1.speed",
+        "PSU2_FAN1.speed"
     ],
     "user_defined_checkers": [],
     "polling_interval": 60,

@@ -1,6 +1,11 @@
 {
     "chassis": {
         "name": "5835-54X",
+        "thermal_manager":false,
+        "status_led": {
+            "controllable": true,
+            "colors": ["green", "red", "off"]
+        },
         "components": [
             {
                 "name": "MB_CPLD1"
