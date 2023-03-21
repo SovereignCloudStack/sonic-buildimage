@@ -10,7 +10,7 @@
 
 try:
     from sonic_platform_base.psu_base import PsuBase
-    #from sonic_platform.fan import Fan
+    from sonic_platform.thermal import Thermal
     from .helper import APIHelper
 except ImportError as e:
     raise ImportError(str(e) + "- required module not found")
@@ -58,19 +58,13 @@ class Psu(PsuBase):
         self.i2c_addr = PSU_CPLD_I2C_MAPPING[self.index]["addr"]
         self.cpld_path = I2C_PATH.format(self.i2c_num, self.i2c_addr)
         self.__initialize_fan()
-        '''
-        for fan_index in range(0, PSU_NUM_FAN[self.index]):
-            #def __init__(self, fan_tray_index, fan_index=0, is_psu_fan=False, psu_index=0):
-            #fan = Fan(fan_index, 0, is_psu_fan=True, psu_index=self.index)
-            fan = Fan(fan_index, 0, True, self.index)
-            self._fan_list.append(fan)
-        '''
 
     def __initialize_fan(self):
         from sonic_platform.fan import Fan
         for fan_index in range(0, PSU_NUM_FAN[self.index]):
             fan = Fan(fan_index, 0, is_psu_fan=True, psu_index=self.index)
             self._fan_list.append(fan)
+        self._thermal_list.append(Thermal(is_psu=True, psu_index=self.index))
 
     def get_voltage(self):
         """
@@ -170,7 +164,7 @@ class Psu(PsuBase):
             A float number, the high threshold temperature of PSU in Celsius
             up to nearest thousandth of one degree Celsius, e.g. 30.125
         """
-        return False #Not supported
+        return self._thermal_list[0].get_high_threshold()
 
     def get_voltage_high_threshold(self):
         """
@@ -275,3 +269,31 @@ class Psu(PsuBase):
             bool: True if it is replaceable.
         """
         return True
+
+    def get_revision(self):
+        """
+        Retrieves the hardware revision of the device
+
+        Returns:
+            string: Revision value of device
+        """
+        revision_path = "{}{}".format(self.hwmon_path, 'psu_mfr_revision')
+        revision = self._api_helper.read_txt_file(revision_path)
+        if revision is None:
+            return 'N/A'
+
+        return revision
+
+    def get_maximum_supplied_power(self):
+        """
+        Retrieves the maximum supplied power by PSU
+        Returns:
+            A float number, the maximum power output in Watts.
+            e.g. 1200.1
+        """
+        pout_max_path = "{}{}".format(self.hwmon_path, 'psu_mfr_pout_max')
+        val=self._api_helper.read_txt_file(pout_max_path)
+        if val is not None:
+            return float(val)/1000
+        else:
+            return 0.0
