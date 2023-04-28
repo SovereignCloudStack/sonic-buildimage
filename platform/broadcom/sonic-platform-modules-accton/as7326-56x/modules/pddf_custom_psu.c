@@ -167,6 +167,8 @@ static int  pddf_get_model_name_and_type(struct i2c_client *client, enum psu_typ
         model_name[8] = '-';
         if (!isgraph(model_name[11]))
             model_name[11] = '\0';
+        else
+            model_name[MAX_MODEL_NAME] = '\0';
     }
     /* Remove useless characters for PSU_TYPE_ACBEL_FSF* */
     else if ((type == PSU_TYPE_ACBEL_FSF019_AC_F2B) || (type == PSU_TYPE_ACBEL_FSF045_AC_B2F)) {
@@ -198,7 +200,7 @@ static int  pddf_get_model_name_and_type(struct i2c_client *client, enum psu_typ
         
     *get_type = type;
     memcpy(get_data->model_name, model_name, strlen(model_name)>=sizeof(get_data->model_name)?sizeof(get_data->model_name):strlen(model_name));
-    
+    get_data->model_name[strlen(model_name)>=(sizeof(get_data->model_name)-1)?(sizeof(get_data->model_name)-1):strlen(model_name)]='\0';
     return 0;
 }
 
