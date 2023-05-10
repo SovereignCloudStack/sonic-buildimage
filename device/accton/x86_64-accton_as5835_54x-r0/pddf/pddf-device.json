@@ -5,7 +5,7 @@
         "num_fantrays":5,
         "num_fans_pertray":2,
         "num_ports":54,
-        "num_temps": 5,
+        "num_temps": 9,
         "pddf_dev_types":
         {
             "description":"AS5835-54X - Below is the list of supported PDDF device types (chip names) for various components. If any component uses some other driver, we will create the client using 'echo <dev-address> <dev-type> > <path>/new_device' method",
@@ -55,7 +55,6 @@
         [
             "pddf_custom_psu"
         ]
-    
     },
 
     "SYSTEM":
@@ -162,7 +161,7 @@
         "dev_info": { "device_type":"PSU-PMBUS", "device_name":"PSU1-PMBUS", "device_parent":"MUX2", "virt_parent":"PSU1"},
         "i2c":
         {
-            "topo_info":{ "parent_bus":"0xb", "dev_addr":"0x58", "dev_type":"psu_pmbus"}, 
+            "topo_info":{ "parent_bus":"0xb", "dev_addr":"0x58", "dev_type":"psu_pmbus"},
             "attr_list": 
             [  
                 { "attr_name":"psu_present", "attr_devaddr":"0x60", "attr_devtype":"cpld", "attr_offset":"0x2", "attr_mask":"0x1", "attr_cmpval":"0x0", "attr_len":"1"},
@@ -674,10 +673,10 @@
     "TEMP5" :
     {
         "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP5"},
-        "dev_attr": { "display_name":"coretemp-isa-0000"},
+        "dev_attr": { "display_name":"CPU_Package_temp"},
         "i2c":
         {
-            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon1"},
             "attr_list":
             [
                 { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp1_crit"},
@@ -686,7 +685,66 @@
             ]
         }
     },
-   
+    "TEMP6" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP6"},
+        "dev_attr": { "display_name":"CPU_Core_0_temp"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon1"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp4_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp4_max"},
+                { "attr_name": "temp1_input", "drv_attr_name":"temp4_input"}
+            ]
+        }
+    },
+    "TEMP7" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP7"},
+        "dev_attr": { "display_name":"CPU_Core_1_temp"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon1"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp8_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp8_max"},
+                { "attr_name": "temp1_input", "drv_attr_name":"temp8_input"}
+            ]
+        }
+    },
+    "TEMP8" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP8"},
+        "dev_attr": { "display_name":"CPU_Core_2_temp"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon1"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp10_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp10_max"},
+                { "attr_name": "temp1_input", "drv_attr_name":"temp10_input"}
+            ]
+        }
+    },
+    "TEMP9" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP9"},
+        "dev_attr": { "display_name":"CPU_Core_3_temp"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon1"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp14_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp14_max"},
+                { "attr_name": "temp1_input", "drv_attr_name":"temp14_input"}
+            ]
+        }
+    },
     "SYSSTATUS":
     {
         "dev_info":{ "device_type":"SYSSTAT", "device_name":"SYSSTATUS"},

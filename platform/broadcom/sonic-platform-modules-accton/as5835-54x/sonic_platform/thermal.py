@@ -37,8 +37,32 @@ DEFAULT_THRESHOLD = {
         LOW_THRESHOLD : NOT_AVAILABLE,
         HIGH_CRIT_THRESHOLD : NOT_AVAILABLE,
         LOW_CRIT_THRESHOLD : NOT_AVAILABLE
-    },    
-    'coretemp-isa-0000' : {
+    },
+    'CPU_Package_temp' : {
+        HIGH_THRESHOLD : '82.0',
+        LOW_THRESHOLD : NOT_AVAILABLE,
+        HIGH_CRIT_THRESHOLD : '104.0',
+        LOW_CRIT_THRESHOLD : NOT_AVAILABLE
+    },
+    'CPU_Core_0_temp' : {
+        HIGH_THRESHOLD : '82.0',
+        LOW_THRESHOLD : NOT_AVAILABLE,
+        HIGH_CRIT_THRESHOLD : '104.0',
+        LOW_CRIT_THRESHOLD : NOT_AVAILABLE
+    },
+    'CPU_Core_1_temp' : {
+        HIGH_THRESHOLD : '82.0',
+        LOW_THRESHOLD : NOT_AVAILABLE,
+        HIGH_CRIT_THRESHOLD : '104.0',
+        LOW_CRIT_THRESHOLD : NOT_AVAILABLE
+    },
+    'CPU_Core_2_temp' : {
+        HIGH_THRESHOLD : '82.0',
+        LOW_THRESHOLD : NOT_AVAILABLE,
+        HIGH_CRIT_THRESHOLD : '104.0',
+        LOW_CRIT_THRESHOLD : NOT_AVAILABLE
+    },
+    'CPU_Core_3_temp' : {
         HIGH_THRESHOLD : '82.0',
         LOW_THRESHOLD : NOT_AVAILABLE,
         HIGH_CRIT_THRESHOLD : '104.0',
@@ -72,6 +96,8 @@ class Thermal(PddfThermal):
         self.__conf = DeviceThreshold(self.get_name())
         # Default threshold.
         self.__default_threshold = DEFAULT_THRESHOLD[self.get_name()]
+        self.min_temperature = None
+        self.max_temperature = None
 
     # Provide the functions/variables below for which implementation is to be overwritten
     def get_name(self):
@@ -90,6 +116,19 @@ class Thermal(PddfThermal):
 
         if get_temp is not None:
             return True if get_temp else False
+
+    def get_temperature(self):
+        current = super().get_temperature()
+
+        if self.min_temperature is None or \
+            current < self.min_temperature:
+            self.min_temperature = current
+
+        if self.max_temperature is None or \
+           current > self.max_temperature:
+            self.max_temperature = current
+
+        return current
 
     def set_high_threshold(self, temperature):
         try:
@@ -118,8 +157,8 @@ class Thermal(PddfThermal):
         default_value = self.__default_threshold[HIGH_THRESHOLD]
         if default_value != NOT_AVAILABLE:
             return float(default_value)
-
-        raise NotImplementedError
+        
+        return super().get_high_threshold()
 
     def set_low_threshold(self, temperature):
         try:
@@ -178,8 +217,7 @@ class Thermal(PddfThermal):
         default_value = self.__default_threshold[HIGH_CRIT_THRESHOLD]
         if default_value != NOT_AVAILABLE:
             return float(default_value)
-
-        raise NotImplementedError
+        return super().get_high_critical_threshold()
 
     def set_low_critical_threshold(self, temperature):
         try:
@@ -226,3 +264,27 @@ class Thermal(PddfThermal):
             string: Serial number of device
         """
         return 'N/A'
+
+    def get_minimum_recorded(self):
+        """
+        Retrieves the minimum recorded temperature of thermal
+        Returns:
+            A float number, the minimum recorded temperature of thermal in Celsius
+            up to nearest thousandth of one degree Celsius, e.g. 30.125
+        """
+        if self.min_temperature is None:
+            self.get_temperature()
+
+        return self.min_temperature
+
+    def get_maximum_recorded(self):
+        """
+        Retrieves the maximum recorded temperature of thermal
+        Returns:
+            A float number, the maximum recorded temperature of thermal in Celsius
+            up to nearest thousandth of one degree Celsius, e.g. 30.125
+        """
+        if self.max_temperature is None:
+            self.get_temperature()
+
+        return self.max_temperature
