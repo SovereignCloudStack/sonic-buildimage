@@ -44,7 +44,31 @@ DEFAULT_THRESHOLD = {
         HIGH_CRIT_THRESHOLD : NOT_AVAILABLE,
         LOW_CRIT_THRESHOLD : NOT_AVAILABLE
     },
-    'coretemp-isa-0000' : {
+    'CPU_Package_temp' : {
+        HIGH_THRESHOLD : '82.0',
+        LOW_THRESHOLD : NOT_AVAILABLE,
+        HIGH_CRIT_THRESHOLD : '104.0',
+        LOW_CRIT_THRESHOLD : NOT_AVAILABLE
+    },
+    'CPU_Core_0_temp' : {
+        HIGH_THRESHOLD : '82.0',
+        LOW_THRESHOLD : NOT_AVAILABLE,
+        HIGH_CRIT_THRESHOLD : '104.0',
+        LOW_CRIT_THRESHOLD : NOT_AVAILABLE
+    },
+    'CPU_Core_1_temp' : {
+        HIGH_THRESHOLD : '82.0',
+        LOW_THRESHOLD : NOT_AVAILABLE,
+        HIGH_CRIT_THRESHOLD : '104.0',
+        LOW_CRIT_THRESHOLD : NOT_AVAILABLE
+    },
+    'CPU_Core_2_temp' : {
+        HIGH_THRESHOLD : '82.0',
+        LOW_THRESHOLD : NOT_AVAILABLE,
+        HIGH_CRIT_THRESHOLD : '104.0',
+        LOW_CRIT_THRESHOLD : NOT_AVAILABLE
+    },
+    'CPU_Core_3_temp' : {
         HIGH_THRESHOLD : '82.0',
         LOW_THRESHOLD : NOT_AVAILABLE,
         HIGH_CRIT_THRESHOLD : '104.0',
