@@ -26,22 +26,14 @@ class Psu(PddfPsu):
         """
         return float(self.PLATFORM_PSU_CAPACITY)
 
-    def get_capacity(self):
-        """
-        Gets the capacity (maximum output power) of the PSU in watts
-
-        Returns:
-            An integer, the capacity of PSU
-        """
-        return (self.PLATFORM_PSU_CAPACITY)
-
-    def get_type(self):
-        """
-        Gets the type of the PSU
-        Returns:
-        A string, the type of PSU (AC/DC)
-        """
-        return "DC"
-
     def get_name(self):
         return "PSU-{}".format(self.psu_index)
+
+    def get_revision(self):
+        """
+        Retrieves the hardware revision of the device
+
+        Returns:
+            string: Revision value of device
+        """
+        return 'N/A'

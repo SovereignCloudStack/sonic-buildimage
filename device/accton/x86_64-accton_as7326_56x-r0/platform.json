@@ -1,6 +1,7 @@
 {
     "chassis": {
         "name": "7326-56X",
+        "thermal_manager":false,
         "components": [
             {
                 "name": "MB_CPLD1"
@@ -23,40 +24,88 @@
         ],
         "fans": [
             {
-                "name": "FAN-1F"
+                "name": "FAN-1F",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-1R"
+                "name": "FAN-1R",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-2F"
+                "name": "FAN-2F",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-2R"
+                "name": "FAN-2R",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-3F"
+                "name": "FAN-3F",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-3R"
+                "name": "FAN-3R",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-4F"
+                "name": "FAN-4F",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-4R"
+                "name": "FAN-4R",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-5F"
+                "name": "FAN-5F",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-5R"
+                "name": "FAN-5R",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-6F"
+                "name": "FAN-6F",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             },
             {
-                "name": "FAN-6R"
+                "name": "FAN-6R",
+                "speed": {
+                    "controllable": true,
+                    "minimum": 32
+                }
             }
         ],
         "fan_drawers":[
@@ -65,10 +114,18 @@
                 "num_fans" : 2,
                 "fans": [
                     {
-                        "name": "FAN-1F"
+                        "name": "FAN-1F",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     },
                     {
-                        "name": "FAN-1R"
+                        "name": "FAN-1R",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     }
                 ]
             },
@@ -77,10 +134,18 @@
                 "num_fans" : 2,
                 "fans": [
                     {
-                        "name": "FAN-2F"
+                        "name": "FAN-2F",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     },
                     {
-                        "name": "FAN-2R"
+                        "name": "FAN-2R",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     }
                 ]
             },
@@ -89,10 +154,18 @@
                 "num_fans" : 2,
                 "fans": [
                     {
-                        "name": "FAN-3F"
+                        "name": "FAN-3F",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     },
                     {
-                        "name": "FAN-3R"
+                        "name": "FAN-3R",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     }
                 ]
             },
@@ -101,10 +174,18 @@
                 "num_fans" : 2,
                 "fans": [
                     {
-                        "name": "FAN-4F"
+                        "name": "FAN-4F",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     },
                     {
-                        "name": "FAN-4R"
+                        "name": "FAN-4R",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     }
                 ]
             },
@@ -113,10 +194,18 @@
                 "num_fans" : 2,
                 "fans": [
                     {
-                        "name": "FAN-5F"
+                        "name": "FAN-5F",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     },
                     {
-                        "name": "FAN-5R"
+                        "name": "FAN-5R",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     }
                 ]
             },
@@ -125,10 +214,18 @@
                 "num_fans" : 2,
                 "fans": [
                     {
-                        "name": "FAN-6F"
+                        "name": "FAN-6F",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     },
                     {
-                        "name": "FAN-6R"
+                        "name": "FAN-6R",
+                        "speed": {
+                            "controllable": true,
+                            "minimum": 32
+                        }
                     }
                 ]
             }
@@ -182,7 +279,7 @@
                 "low-threshold": false,
                 "high-threshold": true,
                 "low-crit-threshold": false,
-                "high-crit-threshold": true
+                "high-crit-threshold": false
             },
             {
                 "name": "MB_FrontMAC_temp(0x49)",
@@ -190,7 +287,7 @@
                 "low-threshold": false,
                 "high-threshold": true,
                 "low-crit-threshold": false,
-                "high-crit-threshold": true
+                "high-crit-threshold": false
             },
             {
                 "name": "MB_LeftCenter_temp(0x4A)",
@@ -198,7 +295,7 @@
                 "low-threshold": false,
                 "high-threshold": true,
                 "low-crit-threshold": false,
-                "high-crit-threshold": true
+                "high-crit-threshold": false
             },
             {
                 "name": "MB_RearMAC_temp(0x48)",
@@ -206,11 +303,11 @@
                 "low-threshold": false,
                 "high-threshold": true,
                 "low-crit-threshold": false,
-                "high-crit-threshold": true
+                "high-crit-threshold": false
             },
             {
                 "name": "coretemp-isa-0000",
-                "controllable": true,
+                "controllable": false,
                 "low-threshold": false,
                 "high-threshold": true,
                 "low-crit-threshold": false,
