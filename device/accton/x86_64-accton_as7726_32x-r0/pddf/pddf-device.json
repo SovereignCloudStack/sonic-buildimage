@@ -4,7 +4,7 @@
 		"num_psus":2,
 		"num_fantrays":6,
 		"num_fans_pertray":2,
-		"num_ports":32,
+		"num_ports":34,
 		"num_temps":10,
 		"pddf_dev_types":
 		{
@@ -1545,7 +1545,7 @@
         "dev_info": { "device_type":"", "device_name":"PORT33-EEPROM", "device_parent":"MUX2", "virt_parent":"PORT33"},
         "i2c":
         {
-            "topo_info": { "parent_bus":"0xf", "dev_addr":"0x50", "dev_type":"optoe1"},
+            "topo_info": { "parent_bus":"0xf", "dev_addr":"0x50", "dev_type":"optoe2"},
             "attr_list":
             [
                 { "attr_name":"eeprom"}
@@ -1584,7 +1584,7 @@
         "dev_info": { "device_type":"", "device_name":"PORT34-EEPROM", "device_parent":"MUX2", "virt_parent":"PORT34"},
         "i2c":
         {
-            "topo_info": { "parent_bus":"0x10", "dev_addr":"0x50", "dev_type":"optoe1"},
+            "topo_info": { "parent_bus":"0x10", "dev_addr":"0x50", "dev_type":"optoe2"},
             "attr_list":
             [
                 { "attr_name":"eeprom"}
