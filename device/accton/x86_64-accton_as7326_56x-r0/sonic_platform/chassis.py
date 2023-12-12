@@ -40,6 +40,8 @@ SYSLED_MODES = {
 class Chassis(ChassisBase):
     """Platform-specific Chassis class"""
 
+    SYSLED_DEV_NAME = "SYS_LED"
+
     def __init__(self):
         ChassisBase.__init__(self)
         self.config_data = {}
@@ -262,3 +264,12 @@ class Chassis(ChassisBase):
             return False
         else:
             return self.__write_txt_file(SYSLED_FNODE, mode)
+
+    def initizalize_system_led(self):
+        return
+
+    def get_status_led(self):
+        return self.get_system_led(self.SYSLED_DEV_NAME)
+
+    def set_status_led(self, color):
+        return self.set_system_led(self.SYSLED_DEV_NAME, color)
