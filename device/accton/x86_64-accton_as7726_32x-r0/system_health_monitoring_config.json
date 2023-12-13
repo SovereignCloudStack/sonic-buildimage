@@ -2,8 +2,9 @@
     "services_to_ignore": [],
     "devices_to_ignore": [
         "asic",
-        "psu.temperature"
-
+        "psu.temperature",
+        "psu.voltage",
+	    "fan.speed"
     ],
     "user_defined_checkers": [],
     "polling_interval": 60,
