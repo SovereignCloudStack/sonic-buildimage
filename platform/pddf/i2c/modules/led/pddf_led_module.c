@@ -581,7 +581,15 @@ ssize_t dev_operation(struct device *dev, struct device_attribute *da, const cha
 #if DEBUG
     pddf_dbg(LED, KERN_INFO "dev_operation [%s]\n", buf);
 #endif
-    if(strncmp(buf, "show", strlen("show")) == 0) {
+    if(strstr(buf, "STATUS_LED_COLOR")!= NULL) {
+        LED_STATUS index = find_state_index(buf);
+        if (index < MAX_LED_STATUS ) {
+            load_led_ops_data(da, index);
+        } else {
+            printk(KERN_ERR "PDDF_ERROR %s: Invalid state for dev_ops %s", __FUNCTION__, buf);
+        }
+    }
+    else if(strncmp(buf, "show", strlen("show")) == 0) {
         show_led_ops_data(da);
     }
     else if(strncmp(buf, "verify", strlen("verify")) == 0) {

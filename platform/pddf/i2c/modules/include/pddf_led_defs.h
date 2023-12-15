@@ -60,7 +60,15 @@ char*  LED_STATUS_STR[] = {
     "red_blink",
     "blue_blink",
     "amber",
-    "amber_blink"
+    "amber_blink",
+    "STATUS_LED_COLOR_OFF",
+    "STATUS_LED_COLOR_GREEN",
+    "STATUS_LED_COLOR_AMBER",
+    "STATUS_LED_COLOR_RED",
+    "STATUS_LED_COLOR_BLUE",
+    "STATUS_LED_COLOR_BLUE_BLINK",
+    "STATUS_LED_COLOR_GREEN_BLINK",
+    "STATUS_LED_COLOR_AMBER_BLINK"
 };
 
 
