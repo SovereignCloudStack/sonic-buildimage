@@ -13,13 +13,26 @@ try:
 except ImportError as e:
     raise ImportError(str(e) + "- required module not found")
 
-
 class Chassis(PddfChassis):
     """
     PDDF Platform-specific Chassis class
     """
 
-    SYSLED_DEV_NAME = "SYS_LED"
+    SYSLED_FNODE = "/sys/class/leds/accton_as7326_56x_led::diag/brightness"
+
+SYSLED_MODES = {
+    "0" : "STATUS_LED_COLOR_OFF",
+    "1" : "STATUS_LED_COLOR_GREEN",
+    "2" : "STATUS_LED_COLOR_GREEN_BLINK",
+    "3" : "STATUS_LED_COLOR_AMBER",
+    "4" : "STATUS_LED_COLOR_AMBER_BLINK",
+    "5" : "STATUS_LED_COLOR_RED",
+    "6" : "STATUS_LED_COLOR_RED_BLINK",
+    "7" : "STATUS_LED_COLOR_BLUE",
+    "8" : "STATUS_LED_COLOR_BLUE_BLINK",
+    "9" : "STATUS_LED_COLOR_AUTO",
+    "10" : "STATUS_LED_COLOR_UNKNOWN"
+}
 
     def __init__(self, pddf_data=None, pddf_plugin_data=None):
         PddfChassis.__init__(self, pddf_data, pddf_plugin_data)
@@ -90,7 +103,21 @@ class Chassis(PddfChassis):
         return
 
     def get_status_led(self):
-        return self.get_system_led(self.SYSLED_DEV_NAME)
+        with open(self.SYSLED_FNODE, 'r') as file:
+            val = file.read().replace("\n", "")
+        res = self.SYSLED_MODES[val] if val in self.SYSLED_MODES else "UNKNOWN"
+        return res
 
     def set_status_led(self, color):
-        return self.set_system_led(self.SYSLED_DEV_NAME, color)
+        mode = None
+        for key, val in self.SYSLED_MODES.items():
+            if val == color:
+                mode = key
+                break
+        if mode is None:
+            return False
+        else:
+            with open(self.SYSLED_FNODE, 'w') as file:
+                # Write data to the file
+                file.write(mode)
+            return True

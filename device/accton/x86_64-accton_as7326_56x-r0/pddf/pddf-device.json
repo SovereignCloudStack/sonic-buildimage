@@ -52,24 +52,9 @@
         ],
         "custom_kos":
         [
-            "pddf_custom_psu"
+            "pddf_custom_psu",
+            "accton_as7326_56x_leds"
         ]
-    },
-
-    "SYS_LED":
-    {
-        "dev_info": { "device_type":"LED", "device_name":"SYS_LED"},
-        "dev_attr": { "index":"0"},
-        "i2c" : {
-            "attr_list":
-            [
-                {"attr_name":"STATUS_LED_COLOR_OFF",  "bits" : "7:5", "descr" : "", "value" : "0x0", "swpld_addr" : "0x60", "swpld_addr_offset" : "0x30"},
-                {"attr_name":"STATUS_LED_COLOR_GREEN",  "bits" : "7:5", "descr" : "", "value" : "0x1", "swpld_addr" : "0x60", "swpld_addr_offset" : "0x30"},
-                {"attr_name":"STATUS_LED_COLOR_AMBER",  "bits" : "7:5", "descr" : "", "value" : "0x2", "swpld_addr" : "0x60", "swpld_addr_offset" : "0x30"},
-                {"attr_name":"STATUS_LED_COLOR_RED",   "bits" : "7:5", "descr" : "" ,"value" : "0x3", "swpld_addr" : "0x60", "swpld_addr_offset" : "0x30"},
-                {"attr_name":"STATUS_LED_COLOR_BLUE",  "bits" : "7:5", "descr" : "", "value" : "0x5", "swpld_addr" : "0x60", "swpld_addr_offset" : "0x30"}
-            ]
-        }
     },
 
     "SYSTEM":
