@@ -20,19 +20,19 @@ class Chassis(PddfChassis):
 
     SYSLED_FNODE = "/sys/class/leds/accton_as7326_56x_led::diag/brightness"
 
-SYSLED_MODES = {
-    "0" : "STATUS_LED_COLOR_OFF",
-    "1" : "STATUS_LED_COLOR_GREEN",
-    "2" : "STATUS_LED_COLOR_GREEN_BLINK",
-    "3" : "STATUS_LED_COLOR_AMBER",
-    "4" : "STATUS_LED_COLOR_AMBER_BLINK",
-    "5" : "STATUS_LED_COLOR_RED",
-    "6" : "STATUS_LED_COLOR_RED_BLINK",
-    "7" : "STATUS_LED_COLOR_BLUE",
-    "8" : "STATUS_LED_COLOR_BLUE_BLINK",
-    "9" : "STATUS_LED_COLOR_AUTO",
-    "10" : "STATUS_LED_COLOR_UNKNOWN"
-}
+    SYSLED_MODES = {
+        "0" : "STATUS_LED_COLOR_OFF",
+        "1" : "STATUS_LED_COLOR_GREEN",
+        "2" : "STATUS_LED_COLOR_GREEN_BLINK",
+        "3" : "STATUS_LED_COLOR_AMBER",
+        "4" : "STATUS_LED_COLOR_AMBER_BLINK",
+        "5" : "STATUS_LED_COLOR_RED",
+        "6" : "STATUS_LED_COLOR_RED_BLINK",
+        "7" : "STATUS_LED_COLOR_BLUE",
+        "8" : "STATUS_LED_COLOR_BLUE_BLINK",
+        "9" : "STATUS_LED_COLOR_AUTO",
+        "10" : "STATUS_LED_COLOR_UNKNOWN"
+    }
 
     def __init__(self, pddf_data=None, pddf_plugin_data=None):
         PddfChassis.__init__(self, pddf_data, pddf_plugin_data)
