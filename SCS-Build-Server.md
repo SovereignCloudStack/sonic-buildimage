@@ -14,6 +14,7 @@
 ```shell
 # clone GIT repository
 git clone git@github.com:SovereignCloudStack/sonic-buildimage.git
+git checkout fix/scs-459 # adjust branch name accordingly
 
 # add python libraries
 cd sonic-buildimage
