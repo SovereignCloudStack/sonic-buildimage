@@ -76,8 +76,7 @@ class HealthDaemon(DaemonBase):
             chassis = sonic_platform.platform.Platform().get_chassis()
             manager = HealthCheckerManager()
             if not manager.config.config_file_exists():
-                self.log_warning("System health configuration file not found, exit...")
-                return
+                self.log_warning("System health configuration file not found, using default health monitoring config...")
             sysmon = Sysmonitor()
             sysmon.task_run()
             while self._run_checker(manager, chassis):
