@@ -79,9 +79,6 @@ class Sfp(SfpOptoeBase):
     def get_eeprom_path(self):
         return self.port_to_eeprom_mapping[self.port_num]
 
-    def __is_host(self):
-        return os.system(self.HOST_CHK_CMD) == 0
-
     def get_reset_status(self):
         """
         Retrieves the reset status of SFP
