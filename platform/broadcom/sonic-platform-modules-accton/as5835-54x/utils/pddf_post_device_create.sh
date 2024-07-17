@@ -22,6 +22,11 @@ set_system_led_diag_loc_to_off()
     i2cset -y -f 3 0x60 0xa 0x1c &>/dev/null
 }
 
+insmod_jc42_drv()
+{
+    modprobe jc42 &>/dev/null
+}
 set_qsfp_reset_to_normal_state
 set_sfp_tx_disable_to_disable
 set_system_led_diag_loc_to_off
+insmod_jc42_drv
