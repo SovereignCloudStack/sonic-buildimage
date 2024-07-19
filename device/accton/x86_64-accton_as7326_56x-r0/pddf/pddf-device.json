@@ -5,7 +5,7 @@
         "num_fantrays":6,
         "num_fans_pertray":2,
         "num_ports":58,
-        "num_temps": 5,
+        "num_temps": 9,
         "pddf_dev_types":
         {
             "description":"AS7326-56X - Below is the list of supported PDDF device types (chip names) for various components. If any component uses some other driver, we will create the client using 'echo <dev-address> <dev-type> > <path>/new_device' method",
@@ -26,7 +26,7 @@
             "PORT_MODULE":
             [
                 "pddf_xcvr"
-            ]            
+            ]
         },
         "std_kos":
         [
@@ -205,6 +205,7 @@
                 { "attr_name":"psu_v_out", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x8b", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_i_out", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x8c", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_p_out", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x96", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
+                { "attr_name":"psu_p_out_max", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0xa7", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_fan1_speed_rpm", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x90", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_temp1_input", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0x8d", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_v_out_min", "attr_devaddr":"0x5b", "attr_devtype":"pmbus", "attr_offset":"0xa4", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
@@ -257,6 +258,7 @@
                 { "attr_name":"psu_v_out", "attr_devaddr":"0x59", "attr_devtype":"pmbus", "attr_offset":"0x8b", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_i_out", "attr_devaddr":"0x59", "attr_devtype":"pmbus", "attr_offset":"0x8c", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_p_out", "attr_devaddr":"0x59", "attr_devtype":"pmbus", "attr_offset":"0x96", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
+                { "attr_name":"psu_p_out_max", "attr_devaddr":"0x59", "attr_devtype":"pmbus", "attr_offset":"0xa7", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_fan1_speed_rpm", "attr_devaddr":"0x59", "attr_devtype":"pmbus", "attr_offset":"0x90", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_temp1_input", "attr_devaddr":"0x59", "attr_devtype":"pmbus", "attr_offset":"0x8d", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
                 { "attr_name":"psu_v_out_min", "attr_devaddr":"0x59", "attr_devtype":"pmbus", "attr_offset":"0xa4", "attr_mask":"0x0", "attr_cmpval":"0xff", "attr_len":"2"},
@@ -369,7 +371,7 @@
     "TEMP5" :
     {
         "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP5"},
-        "dev_attr": { "display_name":"coretemp-isa-0000"},
+        "dev_attr": { "display_name":"CPU_Package_temp"},
         "i2c":
         {
             "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
@@ -381,7 +383,66 @@
             ]
         }
     },
-
+    "TEMP6" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP6"},
+        "dev_attr": { "display_name":"CPU_Core_0_temp"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp2_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp2_max"},
+                { "attr_name": "temp1_input", "drv_attr_name":"temp2_input"}
+            ]
+        }
+    },
+    "TEMP7" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP7"},
+        "dev_attr": { "display_name":"CPU_Core_1_temp"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp3_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp3_max"},
+                { "attr_name": "temp1_input", "drv_attr_name":"temp3_input"}
+            ]
+        }
+    },
+    "TEMP8" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP8"},
+        "dev_attr": { "display_name":"CPU_Core_2_temp"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp4_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp4_max"},
+                { "attr_name": "temp1_input", "drv_attr_name":"temp4_input"}
+            ]
+        }
+    },
+    "TEMP9" :
+    {
+        "dev_info": { "device_type":"TEMP_SENSOR", "device_name":"TEMP9"},
+        "dev_attr": { "display_name":"CPU_Core_3_temp"},
+        "i2c":
+        {
+            "path_info": {"sysfs_base_path": "/sys/class/hwmon/hwmon0"},
+            "attr_list":
+            [
+                { "attr_name": "temp1_high_crit_threshold", "drv_attr_name":"temp5_crit"},
+                { "attr_name": "temp1_high_threshold", "drv_attr_name":"temp5_max"},
+                { "attr_name": "temp1_input", "drv_attr_name":"temp5_input"}
+            ]
+        }
+    },
     "FAN-CTRL":
     {
         "dev_info": { "device_type":"FAN", "device_name":"FAN-CTRL", "device_parent":"MUX2"},
