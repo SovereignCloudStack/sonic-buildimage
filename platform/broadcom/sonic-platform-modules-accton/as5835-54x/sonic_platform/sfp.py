@@ -51,6 +51,12 @@ class Sfp(PddfSfp):
 
         return name
 
+    def reset(self):
+        if self.sfp_type == 'SFP28':
+            return False
+        else:
+            return super().reset()
+
     def get_position_in_parent(self):
         """Retrieves 1-based relative physical position in parent device."""
         return self.port_index
