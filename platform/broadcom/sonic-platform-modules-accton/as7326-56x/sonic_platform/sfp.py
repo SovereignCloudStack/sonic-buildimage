@@ -196,3 +196,15 @@ class Sfp(PddfSfp):
         except NotImplementedError:
             pass
         return self.__get_error_description()
+
+    def get_reset_status(self):
+        if self.sfp_type == "QSFP28":
+            return super().get_reset_status()
+        return False
+
+
+    def reset(self):
+        if self.sfp_type == "QSFP28":
+            return super().reset()
+        else:
+            return False
