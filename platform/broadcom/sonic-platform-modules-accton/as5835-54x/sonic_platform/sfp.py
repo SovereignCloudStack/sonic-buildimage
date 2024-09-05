@@ -51,11 +51,17 @@ class Sfp(PddfSfp):
 
         return name
 
+    def get_reset_status(self):
+        if self.sfp_type == "QSFP28":
+            return super().get_reset_status()
+        return False
+
+
     def reset(self):
-        if self.sfp_type == 'SFP28':
-            return False
-        else:
+        if self.sfp_type == "QSFP28":
             return super().reset()
+        else:
+            return False
 
     def get_position_in_parent(self):
         """Retrieves 1-based relative physical position in parent device."""
