@@ -24,7 +24,13 @@ class Sfp(PddfSfp):
         0x11, # QSFP28 or later
         0xe1  # QSFP28 EDFA
     ]
-
+    
+    UNRESETTABLE_TYPE_LIST = [
+        'SFP',
+        'SFP+',
+        'SFP28'
+    ]
+    
     def __init__(self, index, pddf_data=None, pddf_plugin_data=None):
         PddfSfp.__init__(self, index, pddf_data, pddf_plugin_data)
         self.index = index + 1
@@ -52,16 +58,24 @@ class Sfp(PddfSfp):
         return name
 
     def get_reset_status(self):
-        if self.sfp_type == "QSFP28":
-            return super().get_reset_status()
-        return False
-
+        """
+        Retrieves the reset status of SFP
+        Returns:
+            A Boolean, True if reset enabled, False if disabled
+        """
+        if self.sfp_type in self.UNRESETTABLE_TYPE_LIST:
+            return False
+        return super().get_reset_status()
 
     def reset(self):
-        if self.sfp_type == "QSFP28":
-            return super().reset()
-        else:
+        """
+        Reset SFP and return all user module settings to their default srate.
+        Returns:
+            A boolean, True if successful, False if not
+        """
+        if self.sfp_type in self.UNRESETTABLE_TYPE_LIST:
             return False
+        return super().reset()
 
     def get_position_in_parent(self):
         """Retrieves 1-based relative physical position in parent device."""
