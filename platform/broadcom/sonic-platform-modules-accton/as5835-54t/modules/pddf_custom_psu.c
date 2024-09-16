@@ -115,6 +115,7 @@ ssize_t pddf_show_custom_psu_v_out(struct device *dev, struct device_attribute *
 		return sprintf(buf, "%d\n", (mantissa * multiplier) / (1 << -exponent));
 }
 
+
 int pddf_post_get_custom_psu_model_name(void *i2c_client, PSU_DATA_ATTR *adata, void *data)
 {
     struct psu_attr_info *sysfs_attr_info = (struct psu_attr_info *)data;
@@ -201,8 +202,8 @@ int pddf_post_get_custom_psu_fan_dir(void *i2c_client, PSU_DATA_ATTR *adata, voi
     /* Check for B2F models */
     for (i = 0; fan_b2f_models[i] != NULL; i++) {
         if (strcmp(psu_eeprom_model_name->val.strval, fan_b2f_models[i]) == 0) {
-            strscpy(psu_fan_dir_attr_info->val.strval,
-                    FAN_DIR_B2F,
+            strscpy(psu_fan_dir_attr_info->val.strval, 
+                    FAN_DIR_B2F, 
                     sizeof(psu_fan_dir_attr_info->val.strval));
 	    /* Match found in B2F models, exit early */
             return 0;
@@ -212,8 +213,8 @@ int pddf_post_get_custom_psu_fan_dir(void *i2c_client, PSU_DATA_ATTR *adata, voi
     /* If not found in B2F models, check F2B models */
     for (i = 0; fan_f2b_models[i] != NULL; i++) {
         if (strcmp(psu_eeprom_model_name->val.strval, fan_f2b_models[i]) == 0) {
-            strscpy(psu_fan_dir_attr_info->val.strval,
-                    FAN_DIR_F2B,
+            strscpy(psu_fan_dir_attr_info->val.strval, 
+                    FAN_DIR_F2B, 
                     sizeof(psu_fan_dir_attr_info->val.strval));
             break;
         }
@@ -271,6 +272,7 @@ int pddf_custom_psu_post_remove(struct i2c_client *client)
 
     return 0;
 }
+
 
 static int __init pddf_custom_psu_init(void)
 {
