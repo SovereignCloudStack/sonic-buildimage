@@ -17,6 +17,11 @@ exit
 vrf {{ vrf }}
  ip protocol bgp route-map {{ bgp_sess['route_map'] }}
 {%    endif %}
+{%    if 'route_map_ipv6' in bgp_sess %}
+!
+vrf {{ vrf }}
+ ipv6 protocol bgp route-map {{ bgp_sess['route_map_ipv6'] }}
+{%    endif %}
 {%   endfor %}
 {%  endif %}
 {%  if ROUTE_MAP is defined and ROUTE_MAP|length > 0 %}

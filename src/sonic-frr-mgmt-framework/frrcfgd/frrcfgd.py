@@ -1755,7 +1755,8 @@ class BGPConfigDaemon:
                       ('confed_peers',                                  '{no:no-prefix}bgp confederation peers {}', hdl_confed_peers),
                       (['keepalive', 'holdtime'],                       '{no:no-prefix}timers bgp {} {}'),
                       (['max_med_admin', '+max_med_admin_val'],         '{no:no-prefix}bgp max-med administrative {}', ['true', 'false']),
-                      ('route_map',                                     '{no:no-prefix}ip protocol bgp route-map {}'),
+                      ('route_map',                                     '[zebra]{no:no-prefix}ip protocol bgp route-map {}'),
+                      ('route_map_ipv6',                                '[zebra]{no:no-prefix}ipv6 protocol bgp route-map {}'),
     ]
 
     global_af_key_map = [(['ebgp_route_distance',
@@ -1878,7 +1879,7 @@ class BGPConfigDaemon:
                          ('call_route_map',                 '{no:no-prefix}call {:enable-only}'),
                          ('set_origin',                     '[bgpd]{no:no-prefix}set origin {:tolower}'),
                          ('set_local_pref',                 '[bgpd]{no:no-prefix}set local-preference {}'),
-                         ('set_src',                        '{no:no-prefix}set src {}'),
+                         ('set_src',                        '[zebra]{no:no-prefix}set src {}'),
                          ('set_next_hop',                   '{no:no-prefix}set ip next-hop {}'),
                          ('set_ipv6_next_hop_global',       '[bgpd]{no:no-prefix}set ipv6 next-hop global {}'),
                          ('set_ipv6_next_hop_prefer_global', '[bgpd]{no:no-prefix}set ipv6 next-hop prefer-global', ['true', 'false']),
@@ -2644,12 +2645,13 @@ class BGPConfigDaemon:
                     if local_asn is None:
                         syslog.syslog(syslog.LOG_ERR, 'local ASN for VRF %s was not configured' % vrf)
                         continue
-                    if 'route_map' in data:
-                        # Route maps are configured in a different context, so they need a different cmd_prefix
-                        cmd_prefix = ['configure terminal', 'vrf {}'.format(vrf)]
-                        if not key_map.run_command(self, table, {'route_map': data['route_map']}, cmd_prefix):
-                            syslog.syslog(syslog.LOG_ERR, 'failed running BGP global config command')
-                        del data['route_map']
+                    for route_map_key in ['route_map', 'route_map_ipv6']:
+                        if route_map_key in data:
+                            # Route maps are configured in a different context, so they need a different cmd_prefix
+                            cmd_prefix = ['configure terminal', 'vrf {}'.format(vrf)]
+                            if not key_map.run_command(self, table, {route_map_key: data[route_map_key]}, cmd_prefix):
+                                syslog.syslog(syslog.LOG_ERR, 'failed running BGP global config command')
+                            del data[route_map_key]
                     cmd_prefix = ['configure terminal', 'router bgp {} vrf {}'.format(local_asn, vrf)]
                     if not key_map.run_command(self, table, data, cmd_prefix):
                         syslog.syslog(syslog.LOG_ERR, 'failed running BGP global config command')
